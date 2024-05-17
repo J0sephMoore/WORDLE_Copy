@@ -41,6 +41,9 @@ int main()
     int entry = rand() % 3324;
 
     string magicWord = dictionary[entry];
+
+    int greens = 0;
+    int yellows = 0;
     
     while (guessesCount < 6 || !success) {
 
@@ -61,8 +64,14 @@ int main()
             guessesCount++;
         }
 
+        char greenLetters[5]{0, 0, 0, 0, 0};
+        int greenPosition[5]{0, 0, 0, 0, 0};
+
+        char yellowLetters[5]{ 0, 0, 0, 0, 0 };
+        int yellowPosition[5]{ 0, 0, 0, 0, 0 };
+
         bool checkedMagic[5]{ 0, 0, 0, 0, 0};
-        bool checkedGuess[5]{ 0, 0, 0, 0, 0 };
+        bool checkedGuess[5]{ 0, 0, 0, 0, 0};
         //green
         for (int i = 0; i < 5; ++i) {
             if (magicWord[i] == guess[i]) {
@@ -72,6 +81,9 @@ int main()
                 wordleBoard.MarkAlphabetLetterCorrectPosition(guess[i]);
                 checkedMagic[i] = 1;
                 checkedGuess[i] = 1;
+                greenLetters[greens] = guess[i];
+                greenPosition[greens] = i;
+                ++greens;
             }
             
         }
@@ -85,6 +97,9 @@ int main()
                     wordleBoard.MarkAlphabetLetterWrongPosition(guess[i]);
                     checkedGuess[i] = 1;
                     checkedMagic[j] = 1;
+                    yellowLetters[yellows] = guess[i];
+                    yellowPosition[yellows] = i;
+                    ++yellows;
                 }
             }
         }
@@ -95,6 +110,15 @@ int main()
                 wordleBoard.MarkGuessLetterWrong(i);
                 // Mark the keyboard letter as wrong
                 wordleBoard.MarkAlphabetLetterWrong(guess[i]);
+            }
+        }
+
+        for (int dictNum = 0; dictNum < 3324; ++dictNum) {
+            string hintCheck = dictionary[dictNum];
+            for (int i = 0; i < 5; ++i) {
+                for (int j = 0; j < 5; ++j) {
+
+                }
             }
         }
 
